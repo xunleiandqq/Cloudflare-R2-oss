@@ -3,76 +3,65 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>宏诚光学资料在线观看、下载</title>
+    <title>宏诚光学资料</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.37/vue.global.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
-    <link rel="prefetch" href="/assets/main.mjs" />
-    <link rel="prefetch" href="/assets/MimeIcon.vue" />
-    <link rel="stylesheet" href="/assets/main.css" />
-    <link rel="manifest" href="/assets/manifest.json" />
-    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <style>
+      .media-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .media-item {
+        max-width: 300px;
+      }
+
+      img,
+      video {
+        width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-   <template>
-  <div>
-    <h1>媒体预览</h1>
-    <input type="file" @change="onFileChange" accept="image/*,video/*" multiple />
-    <div v-if="mediaList.length" class="media-container">
-      <div v-for="(media, index) in mediaList" :key="index" class="media-item">
-        <template v-if="media.type.startsWith('image/')">
-          <img :src="media.src" :alt="'Image ' + index" />
-        </template>
-        <template v-else-if="media.type.startsWith('video/')">
-          <video controls :src="media.src"></video>
-        </template>
+    <div id="app">
+      <h1>媒体预览库</h1>
+      <input type="file" @change="onFileChange" accept="image/*,video/*" multiple />
+      <div v-if="mediaList.length" class="media-container">
+        <div v-for="(media, index) in mediaList" :key="index" class="media-item">
+          <template v-if="media.type.startsWith('image/')">
+            <img :src="media.src" :alt="'Image ' + index" />
+          </template>
+          <template v-else-if="media.type.startsWith('video/')">
+            <video controls :src="media.src"></video>
+          </template>
+        </div>
       </div>
     </div>
-  </div>
-</template>
 
-<script>
-export default {
-  data() {
-    return {
-      mediaList: [], // 用于存储图片和视频的信息
-    };
-  },
-  methods: {
-    onFileChange(event) {
-      const files = Array.from(event.target.files);
-      this.mediaList = files.map((file) => ({
-        type: file.type,
-        src: URL.createObjectURL(file),
-      }));
-    },
-  },
-};
-</script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            mediaList: [], // 存储图片和视频的信息
+          };
+        },
+        methods: {
+          onFileChange(event) {
+            const files = Array.from(event.target.files);
+            this.mediaList = files.map((file) => ({
+              type: file.type,
+              src: URL.createObjectURL(file),
+            }));
+          },
+        },
+      });
 
-<style>
-.media-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.media-item {
-  max-width: 300px;
-}
-
-img,
-video {
-  width: 100%;
-  height: auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-</style>
-
-
-    <script type="module"></script>
+      app.mount("#app");
+    </script>
   </body>
 </html>
+
