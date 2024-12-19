@@ -227,7 +227,7 @@ export default {
       let files = this.files;
       if (this.search) {
         files = files.filter((file) =>
-          file.key.split("宏诚光学/").pop().includes(this.search)
+          file.key.split("/").pop().includes(this.search)
         );
       }
       return files;
