@@ -7,14 +7,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/longern/FlareDrive.git"
+    "url": "git+https://github.com/xunleiandqq/FlareDrive.git"
   },
   "author": "longern",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/longern/FlareDrive/issues"
+    "url": "https://github.com/xunleiandqq/FlareDrive/issues"
   },
-  "homepage": "https://github.com/longern/FlareDrive#readme",
+  "homepage": "https://github.com/xunleiandqq/FlareDrive#readme",
   "devDependencies": {
     "@cloudflare/workers-types": "^3.3.1",
     "wrangler": "^2.6.2"
